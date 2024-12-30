@@ -1,20 +1,30 @@
 package com.example.booking
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 
+
 class MainActivity : AppCompatActivity() {
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Safely retrieve NavController from NavHostFragment
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-            ?: throw IllegalStateException("NavHostFragment not found")
-        val navController = navHostFragment.navController
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
 
-        // No need to set up ActionBar if it's not required
+        // Check login status
+        if (!sharedPreferences.getBoolean("isLoggedIn", false)) {
+            // Redirect to LoginActivity if not logged in
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
