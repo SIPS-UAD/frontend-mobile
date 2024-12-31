@@ -4,9 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import com.example.booking.MainActivity
-import com.example.booking.R
 import com.example.booking.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -16,10 +15,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_login)
+        setContentView(binding.root)
 
         sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
 
+        Log.d("LoginActivity", "onCreate called")
         binding.btnLogin.setOnClickListener {
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
