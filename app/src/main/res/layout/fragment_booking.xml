@@ -188,6 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:backgroundTint="#402105"
+                android:textColor="@color/white"
                 android:text="continue Rp100 000" />
 
         </LinearLayout>
