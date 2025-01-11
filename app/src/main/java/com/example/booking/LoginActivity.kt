@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
             if (username == "admin" && password == "1234") {
                 sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT).show()
