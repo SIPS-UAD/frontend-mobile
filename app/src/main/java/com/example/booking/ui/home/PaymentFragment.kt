@@ -1,4 +1,4 @@
-package com.example.booking
+package com.example.booking.ui.home
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.booking.R
 
 class PaymentFragment : Fragment() {
 

@@ -1,5 +1,6 @@
-package com.example.booking
+package com.example.booking.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.booking.HomeActivity
+import com.example.booking.R
 
 class DoneFragment : Fragment() {
 
@@ -41,7 +44,8 @@ class DoneFragment : Fragment() {
 
         // Handle "Finish" button click
         finishButton.setOnClickListener {
-            findNavController().popBackStack(R.id.bookingFragment, false) // Clear intermediate fragments
+            val intent = Intent(requireContext(), HomeActivity::class.java)
+            startActivity(intent)
         }
 
         return view

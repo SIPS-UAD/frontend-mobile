@@ -1,4 +1,4 @@
-package com.example.booking
+package com.example.booking.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
