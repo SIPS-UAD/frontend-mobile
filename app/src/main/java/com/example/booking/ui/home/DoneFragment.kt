@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.booking.HomeActivity
+import com.example.booking.MainActivity
 import com.example.booking.R
 
 class DoneFragment : Fragment() {
@@ -44,7 +43,7 @@ class DoneFragment : Fragment() {
 
         // Handle "Finish" button click
         finishButton.setOnClickListener {
-            val intent = Intent(requireContext(), HomeActivity::class.java)
+            val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
         }
 
