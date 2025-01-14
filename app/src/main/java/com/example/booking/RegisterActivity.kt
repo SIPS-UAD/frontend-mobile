@@ -1,5 +1,6 @@
 package com.example.booking
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -61,13 +62,13 @@ class RegisterActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    if (responseBody != null && responseBody.status == 200) {
+                    if (responseBody != null) {
                         Toast.makeText(
                             this@RegisterActivity,
                             "Registrasi berhasil: ${responseBody.message}",
                             Toast.LENGTH_SHORT
                         ).show()
-                        // Arahkan ke halaman login atau halaman utama
+                        navigateToLoginActivity()
                         finish()
                     } else {
                         Toast.makeText(
@@ -93,5 +94,9 @@ class RegisterActivity : AppCompatActivity() {
                 ).show()
             }
         })
+    }
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
