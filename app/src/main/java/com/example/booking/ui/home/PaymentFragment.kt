@@ -43,6 +43,7 @@ class PaymentFragment : Fragment() {
         val view = inflater.inflate(layout.fragment_payment, container, false)
         val sharedPreferences = requireContext().getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("authToken", null)
+        val userId = sharedPreferences.getInt("userId", -1)
         val orderName = arguments?.getString("orderName") ?: "Unknown Order"
         val bandName = arguments?.getString("bandName") ?: "Unknown Band"
         val totalTime = arguments?.getInt("totalTime") ?: 1
@@ -63,7 +64,7 @@ class PaymentFragment : Fragment() {
             // tampilkan token
             Log.d("PaymentFragment", "Token: $token")
             if (selectedImageFile != null) {
-                submitPaymentProof(orderName, bandName, totalTime, totalPayment, selectedImageFile!!, token!!)
+                submitPaymentProof(orderName, bandName, totalTime, totalPayment, selectedImageFile!!, token!!, userId)
             } else {
                 Toast.makeText(context, "Please upload a payment proof first", Toast.LENGTH_SHORT).show()
             }
@@ -124,7 +125,8 @@ class PaymentFragment : Fragment() {
         totalTime: Int,
         totalPayment: Int,
         file: File,
-        token: String
+        token: String,
+        userId: Int
     ) {
         val apiService = ApiConfig.getApiService()
 
@@ -137,7 +139,7 @@ class PaymentFragment : Fragment() {
 
         val call = apiService.booking(
             token = "Bearer $token",
-            userId = randomUserId,
+            userId = userId,
             scheduleId = 2,
             bandName = bandName,
             duration = totalTime,
@@ -160,6 +162,8 @@ class PaymentFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                         // findNavController().navigate(R.id.doneFragment)
+
+
                     } else {
                         Toast.makeText(
                             requireContext(),
