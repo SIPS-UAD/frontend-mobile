@@ -140,7 +140,7 @@ class PaymentFragment : Fragment() {
         val call = apiService.booking(
             token = "Bearer $token",
             userId = userId,
-            scheduleId = 2,
+            scheduleId = 7,
             bandName = bandName,
             duration = totalTime,
             totalPrice = totalPayment,
@@ -161,8 +161,15 @@ class PaymentFragment : Fragment() {
                             "Payment berhasil: ${responseBody.message}",
                             Toast.LENGTH_SHORT
                         ).show()
-                        // findNavController().navigate(R.id.doneFragment)
 
+                        // navigate to DoneFragment
+                        val bundle = Bundle().apply {
+                            putString("orderName", orderName)
+                            putString("bandName", bandName)
+                            putString("totalTime", totalTime.toString())
+                            putString("totalPayment", totalPayment.toString())
+                        }
+                        findNavController().navigate(R.id.action_paymentFragment_to_doneFragment, bundle)
 
                     } else {
                         Toast.makeText(
@@ -179,6 +186,15 @@ class PaymentFragment : Fragment() {
                     ).show()
                 }
             }
+
+//            private fun navigateToDoneFragment(orderName: String, bandName: String, totalTime: String, totalPayment: String) {
+//                val intent = Intent(requireContext(), DoneFragment::class.java)
+//                intent.putExtra("orderName", orderName)
+//                intent.putExtra("bandName", bandName)
+//                intent.putExtra("totalTime", totalTime)
+//                intent.putExtra("totalPayment", totalPayment)
+//                startActivity(intent)
+//            }
 
             override fun onFailure(call: Call<BookingResponse>, t: Throwable) {
                 Toast.makeText(
