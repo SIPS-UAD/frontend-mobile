@@ -124,6 +124,7 @@ class LoginActivity : AppCompatActivity() {
     private fun saveToken(token: String?) {
         if (!token.isNullOrEmpty()) {
             sharedPreferences.edit().putString("authToken", token).apply()
+            Log.d("LoginActivity", "Token saved: $token")
         }
     }
 
